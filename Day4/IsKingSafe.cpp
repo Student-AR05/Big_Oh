@@ -15,7 +15,7 @@ bool isSafeFromHorse(vector<vector<char>> board, int i, int j)
     {
         int n_row = i + row[index];
         int n_col = j + col[index];
-        if (n_row < 0 || n_col < 0 || n_row > 8 || n_col > 8)
+        if (n_row < 0 || n_col < 0 || n_row >= 8 || n_col >= 8)
         {
             continue;
         }
@@ -145,7 +145,7 @@ bool isKingSafe(vector<vector<char>> board)
         {
             if (board[i][j] == 'Q')
             {
-                if (!(isSafeFromElephant(board, i, j) && isSafeFromHorse(board, i, j)))
+                if (!(isSafeFromElephant(board, i, j) && isSafeFromCamel(board, i, j)))
                 {
                     return false;
                 }
@@ -180,14 +180,14 @@ bool isKingSafe(vector<vector<char>> board)
 int main()
 {
     vector<vector<char>> board = {
-        {'E', 'H', 'C', 'Q', 'K', 'C', 'H', 'E'},
+        {'.', 'H', 'C', '.', '.', 'C', 'H', 'E'},
+        {'.', '.', '.', '.', '.', '.', '.', '.'},
+        {'.', '.', '.', '.', '.', '.', '.', '.'},
+        {'K', '.', '.', '.', '.', '.', '.', '.'},
         {'.', '.', '.', '.', '.', '.', '.', '.'},
         {'.', '.', '.', '.', '.', '.', '.', '.'},
         {'.', '.', '.', '.', '.', '.', '.', '.'},
-        {'.', '.', '.', '.', '.', '.', '.', '.'},
-        {'.', '.', '.', '.', '.', '.', '.', '.'},
-        {'.', '.', '.', '.', '.', '.', '.', '.'},
-        {'E', 'H', 'C', 'Q', '.', 'C', 'H', 'E'}};
+        {'.', 'H', 'C', 'Q', '.', 'C', 'H', 'E'}};
 
     if (isKingSafe(board))
     {
